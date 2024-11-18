@@ -20,19 +20,19 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.routing.key}")
     private String routing_key;
 
-    // beanan per RabbitMQ queue
+    // bean che definisce la coda
     @Bean
     public Queue queue(){
         return new Queue(queue);
     }
 
-    // bean con definizione del topic
+    // bean che definisce l'exchange
     @Bean
     public TopicExchange exchange(){
         return new TopicExchange(topic);
     }
 
-    // binding coda -> exchange
+    // effettua il binding coda -> exchange
     @Bean
     public Binding binding(){
         return BindingBuilder
@@ -41,9 +41,11 @@ public class RabbitMQConfig {
                 .with(routing_key);
     }
 
-    //Con springboot non c'è bisogno di configurare questi tre beans
-    // - ConnectionFactory
-    // - RabbitTemplate
-    // - RabbitAdmin
+    /* Con springboot non c'è bisogno di configurare questi tre beans
 
+     - ConnectionFactory
+     - RabbitTemplate
+     - RabbitAdmin
+
+    */
 }

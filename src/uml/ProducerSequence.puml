@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor      Client
+boundary   MessageController
+control    RabbitMQProducer
+control    RabbitTemplate
+queue      TopicExchange
+queue      MicroservicesQueue
+
+group Synch
+Client -> MessageController: chiamata REST
+MessageController -> RabbitMQProducer: richiesta invio messaggio
+RabbitMQProducer --> RabbitTemplate: convert
+RabbitTemplate --> TopicExchange: send message
+MessageController --> Client: conferma invio messaggio
+
+end
+group Asynch
+TopicExchange --> MicroservicesQueue: publish
+end
+@enduml

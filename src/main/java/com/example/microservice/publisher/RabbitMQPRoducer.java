@@ -16,9 +16,9 @@ public class RabbitMQPRoducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQPRoducer.class);
 
-    private RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
-    //constructor dependency injection
+    // constructor dependency injection del RabbitTemplate
     public RabbitMQPRoducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
