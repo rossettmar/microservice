@@ -1,3 +1,5 @@
+-- INSTALLAZIONE RABBITMQ CON ESEMPIO SERVIZIO PRODUCER --
+
 Questo microservizio utilizza un'immmagine di RabbitMQ rilasciata sul kebernates locale gestito da rancher desktop.
 
 Per predisporre l'ambiente kebernates eseguire le seguenti operazioni, dopo aver avviato rancher desktop:
