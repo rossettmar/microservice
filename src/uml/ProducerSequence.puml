@@ -9,14 +9,13 @@ queue      TopicExchange
 queue      MicroservicesQueue
 
 group Synch
-Client -> MessageController: chiamata REST
-MessageController -> RabbitMQProducer: richiesta invio messaggio
-RabbitMQProducer --> RabbitTemplate: convert
-RabbitTemplate --> TopicExchange: send message
-MessageController --> Client: conferma invio messaggio
-
+    Client -> MessageController: chiamata REST
+    MessageController -> RabbitMQProducer: richiesta invio messaggio
+    RabbitMQProducer --> RabbitTemplate: convert
+    RabbitTemplate --> TopicExchange: send message
+    MessageController --> Client: conferma invio messaggio
 end
 group Asynch
-TopicExchange --> MicroservicesQueue: publish
+    TopicExchange --> MicroservicesQueue: publish
 end
 @enduml
