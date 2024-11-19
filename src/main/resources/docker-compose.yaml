@@ -1,5 +1,14 @@
 #version: "3"
-services: 
+services:
+
+    zipkin:
+        container_name: zipkin
+        image: openzipkin/zipkin
+        ports:
+            - 9411:9411
+        networks:
+            - zipkin
+
     rabbitmq3:
         container_name: rabbitmq
         image: rabbitmq:3.8-management-alpine
@@ -14,4 +23,6 @@ services:
     
 networks:
     rabbitmq:
+        driver: bridge
+    zipkin:
         driver: bridge
