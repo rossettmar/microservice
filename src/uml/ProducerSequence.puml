@@ -5,7 +5,7 @@ actor      Client
 boundary   MessageController
 control    RabbitMQProducer
 control    RabbitTemplate
-queue      TopicExchange
+boundary      TopicExchange
 queue      MicroservicesQueue
 
 group Synch

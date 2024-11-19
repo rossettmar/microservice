@@ -17,21 +17,25 @@ Per predisporre l'ambiente kebernates eseguire le seguenti operazioni, dopo aver
 
    kubectl run rabbitmq --image=rabbitmq:3.8-management-alpine --image-pull-policy=Never --port=5672
 
-6) Eseguire il seguente comando dalla shell linux:
+5) Eseguire il seguente comando dalla shell linux:
 
+   (shell linux su windows)
    kubectl port-forward pods/rabbitmq 5672:5672 15672:15672
+
+   (shell linux su linux - necessario cambiare porta)
+   kubectl port-forward pods/rabbitmq 5673:5672 15673:15672
 
 A questo punto è stato creato un pod attivo sul contenitore kubernates della macchina locale con RabbitMQ.
 
-7) Per verificare che rabbitMQ sia effettivamente up & running collegarsi al seguente indirizzo:
+6) Per verificare che rabbitMQ sia effettivamente up & running collegarsi al seguente indirizzo:
 
-   localhost:15672
+   localhost:15672 (o 15673 su linux)
 
-8) Immettere 'guest' nella box user e in quella password
+7) Immettere 'guest' nella box user e in quella password
 
 Se si accede all'interfaccia di gestione di RabbitMQ l'ambiente è correttamente configurato e si può procedere all'avvio del microservizio
 
-9) Avviato il micorservizio da IntellijIdea e verificato il corretto start si può testare l'invio del messaggio andando a chiamare il controller di prova:
+8) Avviato il micorservizio da IntellijIdea e verificato il corretto start si può testare l'invio del messaggio andando a chiamare il controller di prova:
 
    localhost:8080/api/v1/publish?message=Hello world!
 
@@ -39,4 +43,6 @@ A questo punto il producer del microservizio dovrebbe aver creato la coda, il to
 contenente un payload di tipo String con il testo 'Hello world!'. Il tutto dovrebbe essere verificabile e consultabile nella console di controllo 
 di RabbitMQ.
    
-   
+-- CREAZIONE CONSUMER --
+
+Fare riferimento alla classe RabbitMQConsumer nel progetto
